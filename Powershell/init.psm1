@@ -1,5 +1,5 @@
 Function RunChessPython {
-    python pyglettest.py
+    python main.py
 }
 
 Function BuildChessPython {
