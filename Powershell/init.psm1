@@ -1,5 +1,5 @@
 Function RunChessPython {
-    python main.py
+    python __main__.py
 }
 
 Function BuildChessPython {
