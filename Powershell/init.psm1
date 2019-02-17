@@ -1,9 +1,9 @@
 Function RunChessPython {
-    python __main__.py
+    py __main__.py
 }
 
 Function BuildChessPython {
-
+    py setup.py build
 }
 
 Function TestChessPython {

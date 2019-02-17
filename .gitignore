@@ -1,2 +1,6 @@
 /components/__pycache__
 /state/__pycache__
+/build
+/tests/__pycache__
+/__pycache__
+/.pytest_cache

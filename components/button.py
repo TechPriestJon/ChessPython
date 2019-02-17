@@ -19,3 +19,7 @@ class Button:
         y1top = self.__label.y - self.__label.content_height
         y1bottom = self.__label.y
         return (x1right>x>x1left) and (y1bottom>y>y1top)
+
+    def onClick(self, clicked):
+        if clicked == True:
+            print('Clicked')
