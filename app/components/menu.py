@@ -13,10 +13,17 @@ class Menu:
 
     def render(self):        
         #self.__sprite.draw()
+        self.component_height_sum = 0
         for component in self.__components:
             component.render()
-        
-        self.__border.render(self.__components[-1].width() + 10 + 20, self.__components[-1].height() + 20 + 20)
+            self.component_height_sum += component.height() + 40
+
+        self.components_width = 0    
+        for component in self.__components:
+            if component.width() + 10 + 20 > self.components_width:
+                self.components_width = component.width() + 10 + 20
+
+        self.__border.render(self.components_width, self.component_height_sum)
 
     #def add_button(self, text):
         #if len(self.__components) > 0:
@@ -31,8 +38,8 @@ class Menu:
 
     def add_button(self, text, background):
         if len(self.__components) > 0:
-            x = self.__component[-1].x() + 10
-            y = self.__components[-1].y() - (self.__components[-1].content_height + 10)
+            x = self.__components[-1].x()
+            y = self.__components[-1].y() - (self.__components[-1].height() + 40)
         else:
             x = self.__x + 10
             y = self.__y - 10
@@ -46,3 +53,16 @@ class Menu:
         y1top = self.__y - self.__label.content_height
         y1bottom = self.__y
         return (x1right>x>x1left) and (y1bottom>y>y1top)
+
+    def on_hover(self, x, y):
+        for component in self.__components:
+            component.on_hover(x,y)
+
+    def on_click(self, x, y):
+        for component in self.__components:
+            component.on_click(x,y)
+    
+    def on_release(self, x, y):
+        for component in self.__components:
+            component.on_release(x,y)
+

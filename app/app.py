@@ -4,6 +4,7 @@ from .components.button import Button
 from .components.menu import Menu
 from .state.state import State
 
+pyglet.options['audio'] = ('openal', 'pulse', 'directsound', 'silent')
 window = pyglet.window.Window(fullscreen=False)
 windowHeight = window.height
 
@@ -19,8 +20,13 @@ windowHeight = window.height
 #print(button_two.x())
 #print(button_two.y())
 
+source = pyglet.media.load('./app/music/test2.wav')
+source.play()
+
 menu = Menu(100, (windowHeight-30), 'orange')
 menu.add_button('[Button 9]', 'green')
+menu.add_button('[Button 6]', 'green')
+menu.add_button('[Button 7]', 'green')
 
 state = State()
 #state.add_component(button_one)
@@ -39,8 +45,9 @@ def on_draw():
 #def on_key_press(symbol, modifiers):
 #    button_one.setText('A key was pressed')
 
-#@window.event
-#def on_mouse_motion(x, y, dx, dy):
+@window.event
+def on_mouse_motion(x, y, dx, dy):
+    menu.on_hover(x,y)
     #if button_one.withinBoundry(x,y):
     #    button_one.setText('<Button 1>')
     #else:
@@ -56,8 +63,9 @@ def on_draw():
     #else:
     #    button_three.setText('[Button 3]')
 
-#@window.event
-#def on_mouse_press(x, y, mouseButton, modifiers):
+@window.event
+def on_mouse_press(x, y, mouseButton, modifiers):
+    menu.on_click(x,y)
     #if button_one.withinBoundry(x,y):
     #    button_one.setText('+Button 1+')
     #else:
@@ -72,5 +80,10 @@ def on_draw():
     #    button_three.setText('+Button 3+')
     #else:
     #    button_three.setText('[Button 3]')
-            
+
+@window.event
+def on_mouse_release(x, y, mouseButton, modifiers):
+    menu.on_release(x,y)
+
+
 pyglet.app.run()

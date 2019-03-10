@@ -16,10 +16,7 @@ class Border:
         vertical_units = height / 10
 
         sprites = []
-        sprites.append(pyglet.sprite.Sprite(self.__topleft, self.__x, self.__y))
 
-        sprites.append(pyglet.sprite.Sprite(self.__topright, self.__x + (self.__horizontal.width * horizontal_units), self.__y))
-        
         sprite_count = 1
         while sprite_count < horizontal_units:
             sprites.append(pyglet.sprite.Sprite(self.__horizontal, self.__x + (self.__horizontal.width * sprite_count), self.__y))
@@ -40,6 +37,9 @@ class Border:
             sprites.append(pyglet.sprite.Sprite(self.__vertical, self.__x + (self.__horizontal.width * horizontal_units), self.__y - (self.__vertical.width * sprite_count)))
             sprite_count += 1
 
+        sprites.append(pyglet.sprite.Sprite(self.__topleft, self.__x, self.__y))
+
+        sprites.append(pyglet.sprite.Sprite(self.__topright, self.__x + (self.__horizontal.width * horizontal_units), self.__y))  
         
         sprites.append(pyglet.sprite.Sprite(self.__bottomleft, self.__x, self.__y - (self.__vertical.width * vertical_units)))
 

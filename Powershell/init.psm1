@@ -3,7 +3,24 @@ Function RunChessPython {
 }
 
 Function BuildChessPython {
+    $projectLocation = $global:externalDrive + '\' + $global:currentProject + '\'
+    
+    Write-Host $projectLocation
+
+    $sourceRootMusic = $global:projectLocation + 'app\music'
+    $sourceRootComponents = $global:projectLocation + 'app\components'
+    $destinationRootMusic = $global:projectLocation + 'build\exe.win-amd64-3.6\app\music'
+    $destinationRootComponents = $global:projectLocation + 'build\exe.win-amd64-3.6\app\components'
+
+
+    Write-Host $sourceRootMusic
+    Write-Host $destinationRootMusic
+
+    Copy-Item -Path $sourceRootMusic -Recurse -Destination $destinationRootMusic -Container
+    Copy-Item -Path $sourceRootComponents -Recurse -Destination $destinationRootComponents -Container
+    
     py setup.py build
+
     chess-python.exe
 }
 

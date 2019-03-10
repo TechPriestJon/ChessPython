@@ -3,6 +3,7 @@ from .border import Border
 
 class Button:
     def __init__(self, text, x, y, background):
+        self.__original_text = text
         self.__label = pyglet.text.Label(text, font_name='Arial', font_size=20, x=x, y=y,anchor_x='left',anchor_y='top')
         self.__border = Border(x -10, y + 5, background)
         #if background is not None:
@@ -41,6 +42,23 @@ class Button:
         y1bottom = self.__label.y
         return (x1right>x>x1left) and (y1bottom>y>y1top)
 
-    def onClick(self, clicked):
-        if clicked == True:
-            print('Clicked')
+    def on_hover(self, x, y):
+        if self.withinBoundry(x,y):
+            self.setText('<Button 1>')
+        else:
+            self.__reset()
+
+
+    def on_click(self, x, y):    
+        if self.withinBoundry(x,y):
+            self.setText('+Button 1+')
+        else:
+            self.__reset()
+
+    def __reset(self):
+        self.setText(self.__original_text)
+
+    def on_release(self, x, y):
+        if self.withinBoundry(x,y):
+            self.on_hover(x,y)
+
