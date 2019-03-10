@@ -14,4 +14,4 @@ setup(  name = "Chess Game",
         version = "0.1",
         description = "Chess Game!",
         options = {"build_exe": build_exe_options},
-        executables = [Executable("__main__.py", base=base)])
+        executables = [Executable(targetName="chess-python.exe", base=base, script="__main__.py")])

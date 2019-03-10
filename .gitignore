@@ -1,6 +1,6 @@
-/components/__pycache__
-/state/__pycache__
+/app/components/__pycache__
+/app/state/__pycache__
 /build
-/tests/__pycache__
-/__pycache__
-/.pytest_cache
+/app/tests/__pycache__
+/app/__pycache__
+/app/.pytest_cache
